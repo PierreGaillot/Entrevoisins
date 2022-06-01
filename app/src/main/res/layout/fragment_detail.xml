@@ -125,7 +125,7 @@
                     android:textSize="16dp" />
 
                 <TextView
-                    android:id="@+id/detailNeighbourLinkTextView"
+                    android:id="@+id/detailNeighbourSocialLinkTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="16dp"

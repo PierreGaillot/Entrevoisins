@@ -25,6 +25,9 @@ public class Neighbour {
     /** About me */
     private String aboutMe;
 
+    /** Social Link */
+    private String socialLink;
+
     /**
      * Constructor
      * @param id
@@ -39,6 +42,7 @@ public class Neighbour {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
+        socialLink = "http://facebook.com/" + name;
     }
 
     public long getId() {
@@ -88,6 +92,10 @@ public class Neighbour {
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
     }
+
+    public String getSocialLink() { return socialLink; }
+
+    public void setSocialLink(String socialLink) { this.socialLink = socialLink; }
 
     @Override
     public boolean equals(Object o) {

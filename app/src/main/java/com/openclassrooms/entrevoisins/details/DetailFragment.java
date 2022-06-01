@@ -21,6 +21,7 @@ public class DetailFragment extends Fragment {
     TextView cardNeighbourAddress;
     TextView cardNeighbourPhoneNumber;
     TextView cardNeighbourAboutMe;
+    TextView cardNeighbourSocialLink;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +36,7 @@ public class DetailFragment extends Fragment {
         cardNeighbourAddress = view.findViewById(R.id.detailNeighbourAdressTextView);
         cardNeighbourPhoneNumber = view.findViewById(R.id.detailNeighbourPhoneTextView);
         cardNeighbourAboutMe = view.findViewById(R.id.detailTextViewNeighbourAboutme);
+        cardNeighbourSocialLink = view.findViewById(R.id.detailNeighbourSocialLinkTextView);
 
         // check condition
         if (getArguments() != null){
@@ -46,6 +48,7 @@ public class DetailFragment extends Fragment {
             String nPhoneNumber = getArguments().getString("neighbourPhoneNumber");
             String nAboutMe = getArguments().getString("neighbourAboutMe");
             String nAvatarURL = getArguments().getString("neighbourAvatarURL");
+            String nSocialLink = getArguments().getString("neighbourSocialLink");
 
             // set the name to the textView
             headerNeighbourName.setText(nName);
@@ -53,6 +56,7 @@ public class DetailFragment extends Fragment {
             cardNeighbourAddress.setText(nAdress);
             cardNeighbourPhoneNumber.setText(nPhoneNumber);
             cardNeighbourAboutMe.setText(nAboutMe);
+            cardNeighbourSocialLink.setText(nSocialLink);
 
             Glide.with(headerAvatar.getContext())
                     .load(nAvatarURL)
