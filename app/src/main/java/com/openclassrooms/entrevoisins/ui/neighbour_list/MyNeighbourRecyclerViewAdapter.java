@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +42,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Neighbour neighbour = mNeighbours.get(position);
         holder.mNeighbourName.setText(neighbour.getName());
         Glide.with(holder.mNeighbourAvatar.getContext())
@@ -63,8 +64,14 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 // Create Intent to DetailActivity
                 Intent detailActivityIntent = new Intent(v.getContext(), DetailActivity.class);
                 // Put some values in to Intent
-                detailActivityIntent.putExtra("neighbourName", holder.mNeighbourName.getText().toString());
-                // TODO : Add more data from the neighbour => Avatar, Address, PhoneNumber,SocialLink, AboutMe.
+                // > get the current neighbour.
+                Neighbour currentNeighbour =mNeighbours.get(position);
+                detailActivityIntent.putExtra("neighbourName", currentNeighbour.getName());
+                detailActivityIntent.putExtra("neighbourAddress", currentNeighbour.getAddress());
+                detailActivityIntent.putExtra("neighbourPhoneNumber", currentNeighbour.getPhoneNumber());
+                detailActivityIntent.putExtra("neighbourAboutMe", currentNeighbour.getAboutMe());
+                detailActivityIntent.putExtra("neighbourAvatarURL", currentNeighbour.getAvatarUrl());
+                // TODO : Add more data from the neighbour => Avatar, SocialLink.
                 // open the new activity
                 v.getContext().startActivity(detailActivityIntent);
             }
