@@ -27,4 +27,11 @@ public interface NeighbourApiService {
      * @param neighbour
      */
     void createNeighbour(Neighbour neighbour);
+
+
+//    /**
+//     * Toggle to favorite
+//     * @param neighbour
+//     */
+//    void toggleFavorite(Neighbour neighbour);
 }
