@@ -41,6 +41,9 @@ public class AddNeighbourActivity extends AppCompatActivity {
     private NeighbourApiService mApiService;
     private String mNeighbourImage;
 
+    //TEST FAV
+    private Boolean nIsFav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,9 @@ public class AddNeighbourActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mApiService = DI.getNeighbourApiService();
         init();
+
+        // TEST
+        nIsFav = false;
     }
 
     @Override
@@ -87,7 +93,8 @@ public class AddNeighbourActivity extends AppCompatActivity {
                 mNeighbourImage,
                 addressInput.getEditText().getText().toString(),
                 phoneInput.getEditText().getText().toString(),
-                aboutMeInput.getEditText().getText().toString()
+                aboutMeInput.getEditText().getText().toString(),
+                nIsFav
         );
         mApiService.createNeighbour(neighbour);
         finish();
