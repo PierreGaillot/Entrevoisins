@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +19,13 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
+public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> implements Serializable {
 
     private final List<Neighbour> mNeighbours;
 
@@ -58,8 +60,12 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //TODO : Create Intent to detailActivity
+                // Create Intent to DetailActivity
                 Intent detailActivityIntent = new Intent(v.getContext(), DetailActivity.class);
+                // Put some values in to Intent
+                detailActivityIntent.putExtra("neighbourName", holder.mNeighbourName.getText().toString());
+                // TODO : Add more data from the neighbour => Avatar, Address, PhoneNumber,SocialLink, AboutMe.
+                // open the new activity
                 v.getContext().startActivity(detailActivityIntent);
             }
         });
