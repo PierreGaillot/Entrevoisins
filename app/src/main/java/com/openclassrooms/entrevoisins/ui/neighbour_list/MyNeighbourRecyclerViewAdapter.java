@@ -73,6 +73,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 detailActivityIntent.putExtra("neighbourAboutMe", currentNeighbour.getAboutMe());
                 detailActivityIntent.putExtra("neighbourAvatarURL", currentNeighbour.getAvatarUrl());
                 detailActivityIntent.putExtra("neighbourSocialLink", currentNeighbour.getSocialLink());
+                detailActivityIntent.putExtra("neighbourIsFavorite", currentNeighbour.getFavorite());
 
                 // open the new activity
                 v.getContext().startActivity(detailActivityIntent);

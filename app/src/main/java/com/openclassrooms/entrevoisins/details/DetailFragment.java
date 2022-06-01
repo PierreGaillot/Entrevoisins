@@ -1,7 +1,11 @@
 package com.openclassrooms.entrevoisins.details;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +19,7 @@ import com.openclassrooms.entrevoisins.R;
 public class DetailFragment extends Fragment {
 
     // initialize variable
+    // > Neighbour Data
     ImageView headerAvatar;
     TextView headerNeighbourName;
     TextView cardNeighbourName;
@@ -22,6 +27,8 @@ public class DetailFragment extends Fragment {
     TextView cardNeighbourPhoneNumber;
     TextView cardNeighbourAboutMe;
     TextView cardNeighbourSocialLink;
+    // > Fav Button
+    FloatingActionButton favButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +36,7 @@ public class DetailFragment extends Fragment {
         // initialize view
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        // assign Variables
+        // assign neighbour data Variables
         headerAvatar = view.findViewById(R.id.detailNeighbourAvatarImageView);
         headerNeighbourName = view.findViewById(R.id.detailNeighbourHeaderNameTextView);
         cardNeighbourName = view.findViewById(R.id.detailNeighbourCardNameTextView);
@@ -37,6 +44,8 @@ public class DetailFragment extends Fragment {
         cardNeighbourPhoneNumber = view.findViewById(R.id.detailNeighbourPhoneTextView);
         cardNeighbourAboutMe = view.findViewById(R.id.detailTextViewNeighbourAboutme);
         cardNeighbourSocialLink = view.findViewById(R.id.detailNeighbourSocialLinkTextView);
+        // assign favorite Button
+        favButton = view.findViewById(R.id.detailFavBtn);
 
         // check condition
         if (getArguments() != null){
@@ -49,21 +58,34 @@ public class DetailFragment extends Fragment {
             String nAboutMe = getArguments().getString("neighbourAboutMe");
             String nAvatarURL = getArguments().getString("neighbourAvatarURL");
             String nSocialLink = getArguments().getString("neighbourSocialLink");
+            Boolean nIsFavorite = getArguments().getBoolean("neighbourIsFavorite");
 
-            // set the name to the textView
+            // set Sting data to textViews
             headerNeighbourName.setText(nName);
             cardNeighbourName.setText(nName);
             cardNeighbourAddress.setText(nAdress);
             cardNeighbourPhoneNumber.setText(nPhoneNumber);
             cardNeighbourAboutMe.setText(nAboutMe);
             cardNeighbourSocialLink.setText(nSocialLink);
-
+            // set avatar to ImageView
             Glide.with(headerAvatar.getContext())
                     .load(nAvatarURL)
                     .into(headerAvatar);
-        }
 
+            // set favorite Button color display
+            setFavBntColor(favButton, nIsFavorite);
+        }
         // return view
         return view;
+    }
+
+    private void setFavBntColor(FloatingActionButton favBtn, Boolean isFav) {
+        if (isFav){
+            favBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
+            favBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
+        } else {
+            favBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
+            favBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
+        }
     }
 }
