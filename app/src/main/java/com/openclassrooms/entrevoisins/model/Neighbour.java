@@ -28,6 +28,9 @@ public class Neighbour {
     /** Social Link */
     private String socialLink;
 
+    /** Is Favorite */
+    private Boolean isFavorite;
+
     /**
      * Constructor
      * @param id
@@ -43,6 +46,7 @@ public class Neighbour {
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
         socialLink = "http://facebook.com/" + name;
+        isFavorite = false;
     }
 
     public long getId() {
@@ -96,6 +100,11 @@ public class Neighbour {
     public String getSocialLink() { return socialLink; }
 
     public void setSocialLink(String socialLink) { this.socialLink = socialLink; }
+
+    public Boolean getFavorite() { return isFavorite; }
+
+    public void setFavorite(Boolean favorite) { isFavorite = favorite; }
+
 
     @Override
     public boolean equals(Object o) {
