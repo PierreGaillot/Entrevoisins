@@ -114,6 +114,17 @@ public class Neighbour {
         return Objects.equals(id, neighbour.id);
     }
 
+    /**
+     * Toggle to favorite
+     */
+    public void toggleFavorite(){
+        if (this.getFavorite()){
+            this.setFavorite(false);
+        } else {
+            this.setFavorite(true);
+        };
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

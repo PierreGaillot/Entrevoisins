@@ -116,7 +116,6 @@
                             android:drawableStart="@drawable/ic_baseline_location_on_24"
                             android:drawablePadding="12dp"
                             android:gravity="fill_vertical"
-                            android:text="L'adresse du neighbour"
                             android:textSize="16dp" />
 
 
@@ -130,7 +129,6 @@
                             android:drawableStart="@drawable/ic_baseline_local_phone_24"
                             android:drawablePadding="12dp"
                             android:gravity="fill_vertical"
-                            android:text="+33 6 01 02 03 04"
                             android:textSize="16dp" />
 
                         <TextView
@@ -143,7 +141,6 @@
                             android:drawableStart="@drawable/ic_baseline_language_24"
                             android:drawablePadding="12dp"
                             android:gravity="fill_vertical"
-                            android:text="L'adresse du neighbour"
                             android:textSize="16dp" />
 
 

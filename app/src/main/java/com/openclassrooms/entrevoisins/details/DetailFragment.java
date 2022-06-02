@@ -1,11 +1,9 @@
 package com.openclassrooms.entrevoisins.details;
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 
 
 public class DetailFragment extends Fragment {
@@ -59,6 +58,8 @@ public class DetailFragment extends Fragment {
             String nAvatarURL = getArguments().getString("neighbourAvatarURL");
             String nSocialLink = getArguments().getString("neighbourSocialLink");
             Boolean nIsFavorite = getArguments().getBoolean("neighbourIsFavorite");
+            long nId = getArguments().getLong("neighbourId");
+
 
             // set Sting data to textViews
             headerNeighbourName.setText(nName);
@@ -75,10 +76,31 @@ public class DetailFragment extends Fragment {
             // set favorite Button color display
             setFavBntColor(favButton, nIsFavorite);
         }
+
+        //TEST
+        // Set on clickListener on fav Btn
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Parcelable neighbour Test
+//                Neighbour currentNeighbour = getArguments().getParcelable("neighbour");
+//                currentNeighbour.toggleFavorite();
+
+                setFavBntColor(favButton, getArguments().getBoolean("neighbourIsFavorite"));
+            }
+        });
+
         // return view
         return view;
     }
 
+
+    /**
+     * Toggle to favorite
+     * @param1 favBtn
+     * @param2 isFav
+     */
     private void setFavBntColor(FloatingActionButton favBtn, Boolean isFav) {
         if (isFav){
             favBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));

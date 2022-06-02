@@ -2,6 +2,7 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +75,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 detailActivityIntent.putExtra("neighbourAvatarURL", currentNeighbour.getAvatarUrl());
                 detailActivityIntent.putExtra("neighbourSocialLink", currentNeighbour.getSocialLink());
                 detailActivityIntent.putExtra("neighbourIsFavorite", currentNeighbour.getFavorite());
-
+                detailActivityIntent.putExtra("neighbourId", currentNeighbour.getId());
                 // open the new activity
                 v.getContext().startActivity(detailActivityIntent);
             }
