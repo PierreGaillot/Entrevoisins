@@ -2,6 +2,7 @@ package com.openclassrooms.entrevoisins.service;
 
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,19 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     @Override
     public void createNeighbour(Neighbour neighbour) {
         neighbours.add(neighbour);
+    }
+
+    @Override
+    public List<Neighbour> getFavoriteNeighbours() {
+        ArrayList<Neighbour> favoritesNeighbours;
+        favoritesNeighbours = new ArrayList<>();
+        for (Neighbour n: neighbours
+             ) {
+            if (n.getFavorite() == true){
+                favoritesNeighbours.add(n);
+            }
+        }
+        return favoritesNeighbours;
     }
 
 

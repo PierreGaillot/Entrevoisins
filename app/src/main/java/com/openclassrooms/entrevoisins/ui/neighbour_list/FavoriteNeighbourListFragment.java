@@ -2,6 +2,7 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,11 +48,12 @@ public class FavoriteNeighbourListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite_neighbour_list, container, false);
         ButterKnife.bind(this, view);
         this.configureRecyclerView();
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
 
     private void configureRecyclerView() {
-        this.favoritesNeighbours = new ArrayList<>(mNeighbourApiService.getNeighbours());
+        this.favoritesNeighbours = new ArrayList<>(mNeighbourApiService.getFavoriteNeighbours());
         this.mAdapter = new FavoritesNeighbourListAdapter(this.favoritesNeighbours);
         this.mRecyclerView.setAdapter(this.mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

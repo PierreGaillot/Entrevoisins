@@ -23,6 +23,7 @@ public class FavoritesNeighbourListViewHolder extends RecyclerView.ViewHolder {
     // Binds
     @BindView(R.id.item_list_name)
     TextView mNameTextView;
+    // TODO ADD IMAGE bind & DELETE BTN bind
     @BindView(R.id.item_list_avatar)
     public ImageView mAvatarImageView;
     @BindView(R.id.item_list_delete_button)
