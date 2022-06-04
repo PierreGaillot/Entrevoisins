@@ -12,7 +12,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.ToggleFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 
 public class DetailFragment extends Fragment {
@@ -74,20 +79,17 @@ public class DetailFragment extends Fragment {
                     .into(headerAvatar);
 
             // set favorite Button color display
-            setFavBntColor(favButton, nIsFavorite);
+            initFavBntColor(nIsFavorite);
         }
 
-        //TEST
+
+
         // Set on clickListener on fav Btn
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Parcelable neighbour Test
-//                Neighbour currentNeighbour = getArguments().getParcelable("neighbour");
-//                currentNeighbour.toggleFavorite();
-
-                setFavBntColor(favButton, getArguments().getBoolean("neighbourIsFavorite"));
+                EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
+                initFavBntColor(getArguments().getBoolean("neighbourIsFavorite"));
             }
         });
 
@@ -95,19 +97,47 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
-
     /**
-     * Toggle to favorite
-     * @param1 favBtn
-     * @param2 isFav
+     * initialize Favorite button color
+     * @param1 isFav
      */
-    private void setFavBntColor(FloatingActionButton favBtn, Boolean isFav) {
+    private void initFavBntColor(Boolean isFav) {
         if (isFav){
-            favBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
-            favBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
+            this.favButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
+            this.favButton.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
         } else {
-            favBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
-            favBtn.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
+            this.favButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
+            this.favButton.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
         }
+    }
+
+
+    //
+    // TEST EVENT
+    //
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+    /**
+     * Toggle to favorite Event
+     * it was a test to create an event
+     */
+    @Subscribe
+        public void toggleNeighbourToFavorite(ToggleFavoriteNeighbourEvent toggleEvent){
+        initFavBntColor(getArguments().getBoolean("neighbourIsFavorite"));
     }
 }

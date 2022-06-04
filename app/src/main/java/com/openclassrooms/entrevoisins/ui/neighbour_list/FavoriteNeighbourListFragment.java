@@ -52,8 +52,8 @@ public class FavoriteNeighbourListFragment extends Fragment {
         return view;
     }
 
+    // To configure the RecyclerView
     private void configureRecyclerView() {
-
         this.favoritesNeighbours = new ArrayList<>(mNeighbourApiService.getFavoriteNeighbours());
         this.mAdapter = new MyNeighbourRecyclerViewAdapter(this.favoritesNeighbours);
         this.mRecyclerView.setAdapter(this.mAdapter);

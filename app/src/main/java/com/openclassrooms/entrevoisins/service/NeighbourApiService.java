@@ -35,6 +35,13 @@ public interface NeighbourApiService {
      */
     List<Neighbour> getFavoriteNeighbours();
 
+    /**
+     * Return the neighbour by id
+     * @param id
+     * @return neighbour
+     */
+    Neighbour getNeighbourById(long id);
+
 
 //    /**
 //     * Toggle to favorite
