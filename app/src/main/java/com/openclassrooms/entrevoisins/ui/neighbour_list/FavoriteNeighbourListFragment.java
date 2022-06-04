@@ -13,7 +13,6 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
-import com.openclassrooms.entrevoisins.views.FavoritesNeighbourListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +47,7 @@ public class FavoriteNeighbourListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite_neighbour_list, container, false);
         ButterKnife.bind(this, view);
         this.configureRecyclerView();
+        // add divider decoration
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
