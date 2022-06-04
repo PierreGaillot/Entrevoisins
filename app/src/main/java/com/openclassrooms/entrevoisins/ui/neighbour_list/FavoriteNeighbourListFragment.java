@@ -29,7 +29,7 @@ public class FavoriteNeighbourListFragment extends Fragment {
 
     // Data
     private List<Neighbour> favoritesNeighbours;
-    private FavoritesNeighbourListAdapter mAdapter;
+    private MyNeighbourRecyclerViewAdapter mAdapter;
     private NeighbourApiService mNeighbourApiService;
 
     // Empty Constructor
@@ -53,8 +53,9 @@ public class FavoriteNeighbourListFragment extends Fragment {
     }
 
     private void configureRecyclerView() {
+
         this.favoritesNeighbours = new ArrayList<>(mNeighbourApiService.getFavoriteNeighbours());
-        this.mAdapter = new FavoritesNeighbourListAdapter(this.favoritesNeighbours);
+        this.mAdapter = new MyNeighbourRecyclerViewAdapter(this.favoritesNeighbours);
         this.mRecyclerView.setAdapter(this.mAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
