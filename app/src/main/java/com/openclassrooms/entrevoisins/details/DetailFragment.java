@@ -78,6 +78,7 @@ public class DetailFragment extends Fragment {
                     .load(nAvatarURL)
                     .into(headerAvatar);
 
+
             // set favorite Button color display
             initFavBntColor(nIsFavorite);
         }
@@ -89,6 +90,7 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
+                // TODO RESOLVE THIS
                 initFavBntColor(getArguments().getBoolean("neighbourIsFavorite"));
             }
         });
@@ -102,6 +104,7 @@ public class DetailFragment extends Fragment {
      * @param1 isFav
      */
     private void initFavBntColor(Boolean isFav) {
+        // TODO : Resolve Crash
         if (isFav){
             this.favButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
             this.favButton.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));
