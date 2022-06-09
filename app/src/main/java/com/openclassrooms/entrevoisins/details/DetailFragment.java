@@ -93,13 +93,10 @@ public class DetailFragment extends Fragment {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
+                // EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
                 Neighbour currentNeighbour = (Neighbour) getArguments().getSerializable("currentNeighbour");
                 NeighbourApiService mNeighbourApiService  = DI.getNeighbourApiService();
                 mNeighbourApiService.toggleFavorite(currentNeighbour);
-
-
-                // TODO RESOLVE THIS
                 initFavBntColor(((Neighbour) getArguments().getSerializable("currentNeighbour")).getFavorite());
             }
         });

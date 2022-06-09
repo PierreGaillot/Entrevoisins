@@ -23,14 +23,16 @@ public class DetailActivity extends AppCompatActivity {
 
         // A Bundle with parameter come from user click on item list.
         Neighbour extras = (Neighbour) getIntent().getSerializableExtra("currentNeighbour");
-//        String neighbourName = extras.getString("neighbourName");
 
         // Initialize fragment
         Fragment detailFragment = new DetailFragment();
+
         // Pass Arguments
         Bundle neighbourBundle = new Bundle();
         neighbourBundle.putSerializable("currentNeighbour", extras);
         detailFragment.setArguments(neighbourBundle);
+
+
         //open Fragment
         getSupportFragmentManager()
                 .beginTransaction()
