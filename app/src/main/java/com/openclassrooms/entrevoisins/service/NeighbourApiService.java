@@ -43,9 +43,9 @@ public interface NeighbourApiService {
     Neighbour getNeighbourById(long id);
 
 
-//    /**
-//     * Toggle to favorite
-//     * @param neighbour
-//     */
-//    void toggleFavorite(Neighbour neighbour);
+    /**
+     * Toggle to favorite
+     * @param neighbour
+     */
+    void toggleFavorite(Neighbour neighbour);
 }

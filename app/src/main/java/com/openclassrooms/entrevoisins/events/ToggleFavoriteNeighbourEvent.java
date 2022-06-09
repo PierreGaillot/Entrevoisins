@@ -15,11 +15,10 @@ public class ToggleFavoriteNeighbourEvent {
 
     /**
      * Constructor.
-     * @param neighbourId
+     * @param neighbour
      */
-    public ToggleFavoriteNeighbourEvent(long neighbourId) {
-        this.neighbour = mNeighbourApiService.getNeighbourById(neighbourId);
-        neighbour.toggleFavorite();
+    public ToggleFavoriteNeighbourEvent(Neighbour neighbour) {
+        mNeighbourApiService.toggleFavorite(neighbour);
     }
 
 }

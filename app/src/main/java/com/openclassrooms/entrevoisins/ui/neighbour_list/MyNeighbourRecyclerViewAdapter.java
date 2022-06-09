@@ -68,14 +68,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 // Put some values in to Intent
                 // > get the current neighbour.
                 Neighbour currentNeighbour =mNeighbours.get(position);
-                detailActivityIntent.putExtra("neighbourName", currentNeighbour.getName());
-                detailActivityIntent.putExtra("neighbourAddress", currentNeighbour.getAddress());
-                detailActivityIntent.putExtra("neighbourPhoneNumber", currentNeighbour.getPhoneNumber());
-                detailActivityIntent.putExtra("neighbourAboutMe", currentNeighbour.getAboutMe());
-                detailActivityIntent.putExtra("neighbourAvatarURL", currentNeighbour.getAvatarUrl());
-                detailActivityIntent.putExtra("neighbourSocialLink", currentNeighbour.getSocialLink());
-                detailActivityIntent.putExtra("neighbourIsFavorite", currentNeighbour.getFavorite());
-                detailActivityIntent.putExtra("neighbourId", currentNeighbour.getId());
+                detailActivityIntent.putExtra("currentNeighbour", currentNeighbour);
+
                 // open the new activity
                 v.getContext().startActivity(detailActivityIntent);
             }

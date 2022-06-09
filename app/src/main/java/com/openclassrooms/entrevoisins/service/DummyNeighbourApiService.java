@@ -38,10 +38,6 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         neighbours.add(neighbour);
     }
 
-
-    /**
-     * @return List<FavoriteNeighbours>
-     */
     @Override
     public List<Neighbour> getFavoriteNeighbours() {
         ArrayList<Neighbour> favoritesNeighbours;
@@ -55,22 +51,22 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         return favoritesNeighbours;
     }
 
-
-    /**
-     * Return the neighbour by id
-     * @param id
-     * @return neighbour
-     */
-    public Neighbour getNeighbourById(long id){
-        Neighbour neighbour = null;
-        for (Neighbour n: neighbours
-        ) {
-            if (n.getId() == id){
-                neighbour = n;
-            }
-        }
-        return neighbour;
+    @Override
+    public Neighbour getNeighbourById(long id) {
+        return null;
     }
 
+
+    /**
+     * Toggle to favorite
+     * @param neighbour
+     */
+    public void toggleFavorite(Neighbour neighbour){
+        if (neighbour.getFavorite()){
+            neighbour.setFavorite(false);
+        } else {
+            neighbour.setFavorite(true);
+        };
+    }
 
 }

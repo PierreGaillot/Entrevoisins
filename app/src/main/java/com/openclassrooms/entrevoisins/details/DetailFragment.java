@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.ToggleFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -56,20 +58,22 @@ public class DetailFragment extends Fragment {
 
             // when arguments is not equal to null
             // put the neighbour name value
-            String nName = getArguments().getString("neighbourName");
-            String nAdress = getArguments().getString("neighbourAddress");
-            String nPhoneNumber = getArguments().getString("neighbourPhoneNumber");
-            String nAboutMe = getArguments().getString("neighbourAboutMe");
-            String nAvatarURL = getArguments().getString("neighbourAvatarURL");
-            String nSocialLink = getArguments().getString("neighbourSocialLink");
-            Boolean nIsFavorite = getArguments().getBoolean("neighbourIsFavorite");
-            long nId = getArguments().getLong("neighbourId");
+            Neighbour currentNeighbour = (Neighbour) getArguments().getSerializable("currentNeighbour");
+
+            String nName = currentNeighbour.getName();
+            String nAddress = currentNeighbour.getAddress();
+            String nPhoneNumber = currentNeighbour.getPhoneNumber();
+            String nAboutMe = currentNeighbour.getAboutMe();
+            String nAvatarURL = currentNeighbour.getAvatarUrl();
+            String nSocialLink = currentNeighbour.getSocialLink();
+            Boolean nIsFavorite = currentNeighbour.getFavorite();
+            long nId = currentNeighbour.getId();
 
 
             // set Sting data to textViews
             headerNeighbourName.setText(nName);
             cardNeighbourName.setText(nName);
-            cardNeighbourAddress.setText(nAdress);
+            cardNeighbourAddress.setText(nAddress);
             cardNeighbourPhoneNumber.setText(nPhoneNumber);
             cardNeighbourAboutMe.setText(nAboutMe);
             cardNeighbourSocialLink.setText(nSocialLink);
@@ -89,9 +93,14 @@ public class DetailFragment extends Fragment {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
+//                EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
+                Neighbour currentNeighbour = (Neighbour) getArguments().getSerializable("currentNeighbour");
+                NeighbourApiService mNeighbourApiService  = DI.getNeighbourApiService();
+                mNeighbourApiService.toggleFavorite(currentNeighbour);
+
+
                 // TODO RESOLVE THIS
-                initFavBntColor(getArguments().getBoolean("neighbourIsFavorite"));
+                initFavBntColor(((Neighbour) getArguments().getSerializable("currentNeighbour")).getFavorite());
             }
         });
 

@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -21,13 +22,15 @@ public class DetailActivity extends AppCompatActivity {
     private void openDetailFragment() {
 
         // A Bundle with parameter come from user click on item list.
-        Bundle extras = getIntent().getExtras();
-        String neighbourName = extras.getString("neighbourName");
+        Neighbour extras = (Neighbour) getIntent().getSerializableExtra("currentNeighbour");
+//        String neighbourName = extras.getString("neighbourName");
 
         // Initialize fragment
         Fragment detailFragment = new DetailFragment();
         // Pass Arguments
-        detailFragment.setArguments(extras);
+        Bundle neighbourBundle = new Bundle();
+        neighbourBundle.putSerializable("currentNeighbour", extras);
+        detailFragment.setArguments(neighbourBundle);
         //open Fragment
         getSupportFragmentManager()
                 .beginTransaction()
