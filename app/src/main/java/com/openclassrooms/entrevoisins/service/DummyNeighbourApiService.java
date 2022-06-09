@@ -38,6 +38,11 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         neighbours.add(neighbour);
     }
 
+
+    /**
+     * {@inheritDoc}
+     * @return <Neighbour>
+     */
     @Override
     public List<Neighbour> getFavoriteNeighbours() {
         ArrayList<Neighbour> favoritesNeighbours;
@@ -51,6 +56,10 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         return favoritesNeighbours;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param id
+     */
     @Override
     public Neighbour getNeighbourById(long id) {
         return null;
