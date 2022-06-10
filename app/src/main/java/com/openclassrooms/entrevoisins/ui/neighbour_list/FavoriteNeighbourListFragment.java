@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
@@ -25,6 +26,10 @@ public class FavoriteNeighbourListFragment extends Fragment {
     // Declare recyclerView
     @BindView(R.id.list_favorite_neighbours)
     RecyclerView mRecyclerView;
+
+    //TEST Delete Image Button
+//    @BindView(R.id.item_list_delete_button)
+//    ImageButton deleteButton;
 
     // Data
     private List<Neighbour> favoritesNeighbours;

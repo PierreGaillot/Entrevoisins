@@ -93,14 +93,15 @@ public class DetailFragment extends Fragment {
         favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // EventBus.getDefault().post(new ToggleFavoriteNeighbourEvent(getArguments().getLong("neighbourId")));
                 Neighbour currentNeighbour = (Neighbour) getArguments().getSerializable("currentNeighbour");
                 NeighbourApiService mNeighbourApiService  = DI.getNeighbourApiService();
+                // Toggle this instance of current neighbour
                 mNeighbourApiService.toggleFavorite(currentNeighbour);
                 initFavBntColor(((Neighbour) getArguments().getSerializable("currentNeighbour")).getFavorite());
+                // Toggle neighbour in list
+                mNeighbourApiService.toggleFavorite(mNeighbourApiService.getNeighbourById(currentNeighbour.getId()));
             }
         });
-
         // return view
         return view;
     }
@@ -120,33 +121,4 @@ public class DetailFragment extends Fragment {
         }
     }
 
-
-    //
-    // TEST EVENT
-    //
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-    /**
-     * Toggle to favorite Event
-     * it was a test to create an event
-     */
-    @Subscribe
-        public void toggleNeighbourToFavorite(ToggleFavoriteNeighbourEvent toggleEvent){
-        initFavBntColor(getArguments().getBoolean("neighbourIsFavorite"));
-    }
 }
