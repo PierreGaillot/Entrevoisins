@@ -18,6 +18,7 @@ public class ToggleFavoriteNeighbourEvent {
      * @param neighbour
      */
     public ToggleFavoriteNeighbourEvent(Neighbour neighbour) {
+        this.neighbour = neighbour;
         mNeighbourApiService.toggleFavorite(neighbour);
     }
 

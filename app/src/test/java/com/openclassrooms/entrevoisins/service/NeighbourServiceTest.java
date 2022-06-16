@@ -1,4 +1,10 @@
+
+
+
 package com.openclassrooms.entrevoisins.service;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -10,9 +16,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.List;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
 
 /**
  * Unit test on Neighbour service
@@ -39,5 +42,12 @@ public class NeighbourServiceTest {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
+    }
+
+    /** TODO : CREATE NEIGHBOUR */
+
+    @Test
+    public void createNeighbourWithSuccess(){
+
     }
 }
