@@ -5,6 +5,7 @@ package com.openclassrooms.entrevoisins.service;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -46,8 +47,10 @@ public class NeighbourServiceTest {
 
     /** TODO : CREATE NEIGHBOUR */
 
-    @Test
-    public void createNeighbourWithSuccess(){
-
-    }
+//    @Test
+//    public void createNeighbourWithSuccess(){
+//        Neighbour newNeighbour = Neighbour(999, "Jean Michel Test", "https://i.pravatar.cc/150?u=00306","13 rue rubens, 59800 Lille", "06 63 47 69 96", "J'adore le formage", false);
+//        Neighbour = service.createNeighbour(newNeighbour);
+//        assertTrue(service.getNeighbours().contains(newNeighbour));
+//    }
 }
