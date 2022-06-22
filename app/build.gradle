@@ -35,6 +35,9 @@ dependencies {
     testImplementation project(path: ':app')
     testImplementation project(path: ':app')
     testImplementation project(path: ':app')
+    testImplementation project(path: ':app')
+    testImplementation project(path: ':app')
+    testImplementation project(path: ':app')
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'

@@ -46,11 +46,22 @@ public class NeighbourServiceTest {
     }
 
     /** TODO : CREATE NEIGHBOUR */
+    @Test
+    public void createNeighbourWithSuccess(){
+        Neighbour newNeighbour = Neighbour(999, "Jean Michel Test", "https://i.pravatar.cc/150?u=00306%22,%2213 rue rubens, 59800 Lille", "06 63 47 69 96", "J'adore le formage", false);
+        Neighbour = service.createNeighbour(newNeighbour);
+        assertTrue(service.getNeighbours().contains(newNeighbour));
+    }
 
-//    @Test
-//    public void createNeighbourWithSuccess(){
-//        Neighbour newNeighbour = Neighbour(999, "Jean Michel Test", "https://i.pravatar.cc/150?u=00306","13 rue rubens, 59800 Lille", "06 63 47 69 96", "J'adore le formage", false);
-//        Neighbour = service.createNeighbour(newNeighbour);
-//        assertTrue(service.getNeighbours().contains(newNeighbour));
-//    }
+    /** TODO : CREATE TOOGLE TEST */
+    @Test
+    public  void toggleNeighbourFavoriteWithSuccess(){
+        Neighbour testNeighbour = service.getNeighbours().get(0);
+        Boolean neighbourFav = testNeighbour.getFavorite();
+        service.toggleFavorite(testNeighbour);
+        assertTrue(neighbourFav != testNeighbour.getFavorite());
+    }
+
+
+
 }
