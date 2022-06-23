@@ -52,13 +52,31 @@ public class NeighbourServiceTest {
         assertTrue(service.getNeighbours().contains(newNeighbour));
     }
 
-    /** TODO : GET FAV NEIGHBOUR TEST */
+    @Test
+    public void toggleFavoriteNeighbourWithSuccess(){
+        Neighbour testNeighbour = service.getNeighbours().get(0);
+        Boolean isFavNeighbour = testNeighbour.getFavorite();
+        service.toggleFavorite(testNeighbour);
+        assertFalse(testNeighbour.getFavorite() == isFavNeighbour);
+    }
 
+    @Test
+    public void getNeighbourByIdWithSuccess(){
+        long testId = 1;
+        Neighbour testNeighbour = service.getNeighbourById(testId);
+        assertFalse(testNeighbour.getId() != testId);
+    }
 
-    /** TODO : TOGGLE NEIGHBOUR TEST */
-
-    /** TODO : get NEIGHBOUR by Id TEST */
-
-
+    @Test
+    public void getFavoriteNeighboursWithSuccess() {
+        List<Neighbour> favoriteNeighbours = service.getFavoriteNeighbours();
+        List<Neighbour> expectedNeighbours = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
+        int favNeighbourCount = 0;
+        for (Neighbour n: expectedNeighbours) {
+            if(n.getFavorite()){
+                favNeighbourCount ++;
+            }
+        } assertTrue(favNeighbourCount == favoriteNeighbours.size());
+    }
 
 }
