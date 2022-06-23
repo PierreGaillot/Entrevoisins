@@ -45,12 +45,20 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
-    /** TODO : CREATE NEIGHBOUR */
+    @Test
+    public void createNeighbourWithSuccess(){
+        Neighbour newNeighbour = new Neighbour(999, "Jean Michel Test", "https://i.pravatar.cc/150?u=00306","13 rue rubens, 59800 Lille", "06 63 47 69 96", "J'adore le formage", false);
+        service.createNeighbour(newNeighbour);
+        assertTrue(service.getNeighbours().contains(newNeighbour));
+    }
 
-//    @Test
-//    public void createNeighbourWithSuccess(){
-//        Neighbour newNeighbour = Neighbour(999, "Jean Michel Test", "https://i.pravatar.cc/150?u=00306","13 rue rubens, 59800 Lille", "06 63 47 69 96", "J'adore le formage", false);
-//        Neighbour = service.createNeighbour(newNeighbour);
-//        assertTrue(service.getNeighbours().contains(newNeighbour));
-//    }
+    /** TODO : GET FAV NEIGHBOUR TEST */
+
+
+    /** TODO : TOGGLE NEIGHBOUR TEST */
+
+    /** TODO : get NEIGHBOUR by Id TEST */
+
+
+
 }
