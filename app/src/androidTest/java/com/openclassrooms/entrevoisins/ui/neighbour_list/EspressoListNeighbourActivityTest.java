@@ -23,12 +23,12 @@ import com.openclassrooms.entrevoisins.R;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class EspressoListNeighbourActivityTest {
+
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule =
@@ -39,16 +39,26 @@ public class EspressoListNeighbourActivityTest {
      */
     @Test
     public void espressoListNeighbourActivityTest() {
+
+        // 1 positionInList => Generate INT between 0 > neighbourListSize ?
+        int positionInList = 0;
+
+        // 2 Get the neighbour object from position in list
+        // Neighbour neighbourTested =
+
+        // 3 get this neighbour name to check
+        String neighbourName = "Caroline";
+
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
                         withParent(withId(R.id.container))));
-        recyclerView.perform(actionOnItemAtPosition(0, click()));
+        recyclerView.perform(actionOnItemAtPosition(positionInList, click()));
         ViewInteraction textView = onView(
-                allOf(withId(R.id.detailNeighbourHeaderNameTextView), withText("Caroline"),
+                allOf(withId(R.id.detailNeighbourHeaderNameTextView), withText(neighbourName),
                         withParent(allOf(withId(R.id.navigation_header_container),
                                 withParent(IsInstanceOf.<View>instanceOf(android.widget.RelativeLayout.class)))),
                         isDisplayed()));
-        textView.check(matches(withText("Caroline")));
+        textView.check(matches(withText(neighbourName)));
     }
 
 }
