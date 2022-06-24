@@ -1,11 +1,12 @@
 package com.openclassrooms.entrevoisins.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour {
+public class Neighbour implements Serializable {
 
     /** Identifier */
     private long id;
@@ -112,17 +113,6 @@ public class Neighbour {
         if (o == null || getClass() != o.getClass()) return false;
         Neighbour neighbour = (Neighbour) o;
         return Objects.equals(id, neighbour.id);
-    }
-
-    /**
-     * Toggle to favorite
-     */
-    public void toggleFavorite(){
-        if (this.getFavorite()){
-            this.setFavorite(false);
-        } else {
-            this.setFavorite(true);
-        };
     }
 
     @Override
