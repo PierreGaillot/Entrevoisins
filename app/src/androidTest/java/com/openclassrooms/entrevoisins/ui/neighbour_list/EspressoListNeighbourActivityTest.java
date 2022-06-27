@@ -9,7 +9,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-
 import static org.hamcrest.core.AllOf.allOf;
 
 import android.support.test.espresso.ViewInteraction;
@@ -19,6 +18,9 @@ import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
@@ -28,7 +30,6 @@ import org.junit.runner.RunWith;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class EspressoListNeighbourActivityTest {
-
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule =
@@ -40,14 +41,17 @@ public class EspressoListNeighbourActivityTest {
     @Test
     public void espressoListNeighbourActivityTest() {
 
+        NeighbourApiService service = DI.getNewInstanceApiService();
+
+
         // 1 positionInList => Generate INT between 0 > neighbourListSize ?
         int positionInList = 0;
 
         // 2 Get the neighbour object from position in list
-        // Neighbour neighbourTested =
+         Neighbour neighbourTested = service.getNeighbours().get(positionInList);
 
         // 3 get this neighbour name to check
-        String neighbourName = "Caroline";
+        String neighbourName = neighbourTested.getName().toString();
 
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
@@ -60,7 +64,6 @@ public class EspressoListNeighbourActivityTest {
                         isDisplayed()));
         textView.check(matches(withText(neighbourName)));
     }
-
 }
 /** FIX ERROR from my coworker Léa ! */
 //cccccccccccccccccccccc
