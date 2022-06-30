@@ -27,6 +27,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class EspressoListNeighbourActivityTest {
@@ -44,8 +46,8 @@ public class EspressoListNeighbourActivityTest {
         NeighbourApiService service = DI.getNewInstanceApiService();
 
 
-        // 1 positionInList => Generate INT between 0 > neighbourListSize ?
-        int positionInList = 0;
+        // 1 positionInList => Generate INT between 0 > neighbourListSize
+        int positionInList = new Random().nextInt(service.getNeighbours().size()+1);
 
         // 2 Get the neighbour object from position in list
          Neighbour neighbourTested = service.getNeighbours().get(positionInList);

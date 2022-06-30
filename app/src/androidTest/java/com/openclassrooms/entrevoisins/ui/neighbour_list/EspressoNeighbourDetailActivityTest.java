@@ -27,6 +27,11 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class EspressoNeighbourDetailActivityTest {
 
+    /**
+     * Check if detail Activity is display after click on Neighbour in MainActivity list
+     */
+
+
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule =
             new ActivityTestRule<>(ListNeighbourActivity.class);
