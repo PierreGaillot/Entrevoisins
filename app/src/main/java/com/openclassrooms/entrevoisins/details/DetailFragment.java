@@ -13,13 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
-import com.openclassrooms.entrevoisins.events.ToggleFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 
 public class DetailFragment extends Fragment {
@@ -111,7 +106,6 @@ public class DetailFragment extends Fragment {
      * @param1 isFav
      */
     private void initFavBntColor(Boolean isFav) {
-        // TODO : Resolve Crash
         if (isFav){
             this.favButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.yellowFav)));
             this.favButton.setSupportImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.lightWhite)));

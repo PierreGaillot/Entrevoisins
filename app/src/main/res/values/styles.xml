@@ -14,7 +14,6 @@
     </style>
 
     <style name="AppTheme.hiddenActionbarWithBackBtn">
-        <!--TODO :  hide title activity -->
         <!--<item name="android:windowNoTitle">true</item> -->
         <!--<item name="titleTextColor">@android:color/transparent</item> -->
         <!-- <item name="android:titleTextAppearance">@id/none</item> -->

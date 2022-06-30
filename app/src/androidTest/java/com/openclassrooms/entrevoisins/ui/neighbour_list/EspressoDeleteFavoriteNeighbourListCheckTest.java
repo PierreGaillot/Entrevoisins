@@ -2,28 +2,24 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.swipeLeft;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.Matchers.allOf;
+import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 
-import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.Random;
 
 
 /**
@@ -42,55 +38,23 @@ public class EspressoDeleteFavoriteNeighbourListCheckTest {
     @Test
     public void espressoDeleteFavoriteNeighbourListCheckTest() {
 
-        int itemInList;
+        NeighbourApiService service = DI.getNeighbourApiService();
+        int favNeighbourListSize = service.getFavoriteNeighbours().size();
 
-        ViewInteraction tabView = onView(
-                allOf(
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.tabs),
-                                        0),
-                                1)));
-        tabView.perform(click());
+        // Generate random number from the favoriteNeighbour size.
+        int positionInList = new Random().nextInt(service.getFavoriteNeighbours().size()-1);
 
-        ViewInteraction viewPager = onView(
-                allOf(withId(R.id.container),
-                        childAtPosition(
-                                allOf(withId(R.id.main_content),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        viewPager.perform(swipeLeft());
 
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.item_list_delete_button),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.list_favorite_neighbours),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
+        // TODO
+        // Click at favorite tab
+//        onView(ViewMatchers.withId(R.id.tabs)).perform(click());
+        // Given : We remove the element at random position
+        onView(ViewMatchers.withId(R.id.list_favorite_neighbours)).check(withItemCount(favNeighbourListSize));
+        // When perform a click on a delete icon
+        onView(ViewMatchers.withId(R.id.list_favorite_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(positionInList, new DeleteViewAction()));
+        // Then : the number of element is -1
+        onView(ViewMatchers.withId(R.id.list_favorite_neighbours)).check(withItemCount(favNeighbourListSize-1));
     }
 
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
-    }
 }

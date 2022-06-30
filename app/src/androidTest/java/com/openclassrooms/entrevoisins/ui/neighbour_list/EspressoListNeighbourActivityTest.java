@@ -47,7 +47,7 @@ public class EspressoListNeighbourActivityTest {
 
 
         // 1 positionInList => Generate INT between 0 > neighbourListSize
-        int positionInList = new Random().nextInt(service.getNeighbours().size()+1);
+        int positionInList = new Random().nextInt(service.getNeighbours().size()-1);
 
         // 2 Get the neighbour object from position in list
          Neighbour neighbourTested = service.getNeighbours().get(positionInList);
@@ -67,5 +67,4 @@ public class EspressoListNeighbourActivityTest {
         textView.check(matches(withText(neighbourName)));
     }
 }
-/** FIX ERROR from my coworker Léa ! */
-//cccccccccccccccccccccc
+
