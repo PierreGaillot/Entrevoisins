@@ -1,0 +1,18 @@
+Index: app/src/androidTest/java/com/openclassrooms/entrevoisins/ui/neighbour_list/EspressoListNeighbourActivityTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.openclassrooms.entrevoisins.ui.neighbour_list;\r\n\r\n\r\nimport static android.support.test.espresso.Espresso.onView;\r\nimport static android.support.test.espresso.action.ViewActions.click;\r\nimport static android.support.test.espresso.assertion.ViewAssertions.matches;\r\nimport static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;\r\nimport static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;\r\nimport static android.support.test.espresso.matcher.ViewMatchers.withId;\r\nimport static android.support.test.espresso.matcher.ViewMatchers.withParent;\r\nimport static android.support.test.espresso.matcher.ViewMatchers.withText;\r\n\r\nimport static org.hamcrest.core.AllOf.allOf;\r\n\r\nimport android.support.test.espresso.ViewInteraction;\r\nimport android.support.test.filters.LargeTest;\r\nimport android.support.test.rule.ActivityTestRule;\r\nimport android.support.test.runner.AndroidJUnit4;\r\nimport android.view.View;\r\n\r\nimport com.openclassrooms.entrevoisins.R;\r\n\r\nimport org.hamcrest.core.IsInstanceOf;\r\nimport org.junit.Rule;\r\nimport org.junit.Test;\r\nimport org.junit.experimental.categories.Category;\r\nimport org.junit.runner.RunWith;\r\n\r\n@LargeTest\r\n@RunWith(AndroidJUnit4.class)\r\npublic class EspressoListNeighbourActivityTest {\r\n\r\n    @Rule\r\n    public ActivityTestRule<ListNeighbourActivity> mActivityTestRule =\r\n            new ActivityTestRule<>(ListNeighbourActivity.class);\r\n\r\n    /**\r\n     * TextView display the correct neighbourName to detailActivity\r\n     */\r\n    @Test\r\n    public void espressoListNeighbourActivityTest() {\r\n        ViewInteraction recyclerView = onView(\r\n                allOf(withId(R.id.list_neighbours),\r\n                        withParent(withId(R.id.container))));\r\n        recyclerView.perform(actionOnItemAtPosition(0, click()));\r\n        ViewInteraction textView = onView(\r\n                allOf(withId(R.id.detailNeighbourHeaderNameTextView), withText(\"Caroline\"),\r\n                        withParent(allOf(withId(R.id.navigation_header_container),\r\n                                withParent(IsInstanceOf.<View>instanceOf(android.widget.RelativeLayout.class)))),\r\n                        isDisplayed()));\r\n        textView.check(matches(withText(\"Caroline\")));\r\n    }\r\n\r\n}\r\n/** FIX ERROR from my coworker Léa ! */\r\n//cccccccccccccccccccccc\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/com/openclassrooms/entrevoisins/ui/neighbour_list/EspressoListNeighbourActivityTest.java b/app/src/androidTest/java/com/openclassrooms/entrevoisins/ui/neighbour_list/EspressoListNeighbourActivityTest.java
+--- a/app/src/androidTest/java/com/openclassrooms/entrevoisins/ui/neighbour_list/EspressoListNeighbourActivityTest.java	(revision 350265faa0129493215a4a5e637d3063cd21443d)
++++ b/app/src/androidTest/java/com/openclassrooms/entrevoisins/ui/neighbour_list/EspressoListNeighbourActivityTest.java	(date 1656315983477)
+@@ -50,7 +50,6 @@
+                         isDisplayed()));
+         textView.check(matches(withText("Caroline")));
+     }
+-
+ }
+ /** FIX ERROR from my coworker Léa ! */
+ //cccccccccccccccccccccc
