@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
-import com.openclassrooms.entrevoisins.events.ToggleFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
@@ -103,9 +102,4 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-//    @Subscribe
-//    public void onToggleFavoriteNeighbour(ToggleFavoriteNeighbourEvent event) {
-//        mApiService.toggleFavorite(event.neighbour);
-//        initFavoriteNeighboursList();
-//    }
 }

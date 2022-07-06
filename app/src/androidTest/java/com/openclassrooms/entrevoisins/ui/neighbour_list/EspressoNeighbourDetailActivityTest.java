@@ -7,44 +7,41 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
-import static org.hamcrest.Matchers.allOf;
 
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class EspressoNeighbourDetailActivityTest {
-
-    /**
-     * Check if detail Activity is display after click on Neighbour in MainActivity list
-     */
-
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityTestRule =
             new ActivityTestRule<>(ListNeighbourActivity.class);
 
     @Test
-    public void espressoNeighbourDetailActivityTest() {
-        ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.list_neighbours),
-                        withParent(withId(R.id.container))));
-        recyclerView.perform(actionOnItemAtPosition(0, click()));
+    public void listNeighbourActivityTest() {
 
-        ViewInteraction frameLayout = onView(
-                allOf(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class), isDisplayed()));
+        NeighbourApiService service = DI.getNeighbourApiService();
+        int positionInList = new Random().nextInt(service.getNeighbours().size()-1);
+
+
+        ViewInteraction recyclerView = onView(withId(R.id.list_neighbours));
+        recyclerView.perform(actionOnItemAtPosition(positionInList, click()));
+
+        ViewInteraction frameLayout = onView(withId(R.id.detailFragment));
         frameLayout.check(matches(isDisplayed()));
     }
 }
