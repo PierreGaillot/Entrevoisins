@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
-    private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
+    private final List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
 
 
     /**
@@ -75,11 +75,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      * @param neighbour
      */
     public void toggleFavorite(Neighbour neighbour){
-        if (neighbour.getFavorite()){
-            neighbour.setFavorite(false);
-        } else {
-            neighbour.setFavorite(true);
-        };
+        neighbour.setFavorite(!neighbour.getFavorite());
     }
 
 }
